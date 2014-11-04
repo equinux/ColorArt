@@ -111,36 +111,6 @@
 - (UIImage*)_scaleImage:(UIImage*)image size:(CGSize)scaledSize
 {
     return [image scaledToSize:scaledSize];
-//    CGSize imageSize = [image size];
-//    UIImage *squareImage = [[UIImage alloc] initWithSize:CGSizeMake(imageSize.width, imageSize.width)];
-//    UIImage *scaledImage = [[UIImage alloc] initWithSize:scaledSize];
-//    CGRect drawRect;
-//
-//    // make the image square
-//    if ( imageSize.height > imageSize.width )
-//    {
-//        drawRect = CGRectMake(0, imageSize.height - imageSize.width, imageSize.width, imageSize.width);
-//    }
-//    else
-//    {
-//        drawRect = CGRectMake(0, 0, imageSize.height, imageSize.height);
-//    }
-//
-//  //  [squareImage lockFocus];
-//    [image drawInRect:CGRectMake(0, 0, imageSize.width, imageSize.width)];
-//  //  [squareImage unlockFocus];
-//
-//    // scale the image to the desired size
-//
-//  //  [scaledImage lockFocus];
-//    [squareImage drawInRect:CGRectMake(0, 0, scaledSize.width, scaledSize.height)];
-//  //  [scaledImage unlockFocus];
-//
-//    // convert back to readable bitmap data
-//
-//    
-//    UIImage *finalImage = [[UIImage alloc] initWithCGImage:scaledImage.CGImage];
-//    return finalImage;
 }
 
 - (NSDictionary*)_analyzeImage:(UIImage*)anImage
@@ -162,38 +132,19 @@
 
 	[self _findTextColors:imageColors primaryColor:&primaryColor secondaryColor:&secondaryColor detailColor:&detailColor backgroundColor:backgroundColor];
 
-	if ( primaryColor == nil )
-	{
-		NSLog(@"missed primary");
-		if ( darkBackground )
-			primaryColor = [UIColor whiteColor];
-		else
-			primaryColor = [UIColor blackColor];
-	}
-
-	if ( secondaryColor == nil )
-	{
-		NSLog(@"missed secondary");
-		if ( darkBackground )
-			secondaryColor = [UIColor whiteColor];
-		else
-			secondaryColor = [UIColor blackColor];
-	}
-
-	if ( detailColor == nil )
-	{
-		NSLog(@"missed detail");
-		if ( darkBackground )
-			detailColor = [UIColor whiteColor];
-		else
-			detailColor = [UIColor blackColor];
-	}
-
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithCapacity:4];
-    [dict setObject:backgroundColor forKey:kAnalyzedBackgroundColor];
-    [dict setObject:primaryColor forKey:kAnalyzedPrimaryColor];
-    [dict setObject:secondaryColor forKey:kAnalyzedSecondaryColor];
-    [dict setObject:detailColor forKey:kAnalyzedDetailColor];
+    if (backgroundColor) {
+      [dict setObject:backgroundColor forKey:kAnalyzedBackgroundColor];
+    }
+    if (primaryColor) {
+      [dict setObject:primaryColor forKey:kAnalyzedPrimaryColor];
+    }
+    if (secondaryColor) {
+      [dict setObject:secondaryColor forKey:kAnalyzedSecondaryColor];
+    }
+    if (detailColor) {
+      [dict setObject:detailColor forKey:kAnalyzedDetailColor];
+    }
 
 
     return [NSDictionary dictionaryWithDictionary:dict];
