@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A8D59341E56253B005B85FA /* macOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A8D59331E56253B005B85FA /* macOS.h */; };
+		4A8D59361E56253B005B85FA /* macOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8D59351E56253B005B85FA /* macOS.m */; };
+		4A8D593A1E562547005B85FA /* SLColorArt.m in Sources */ = {isa = PBXBuildFile; fileRef = B63779DA16799D4200E79BFE /* SLColorArt.m */; };
+		4A8D593B1E56254A005B85FA /* EQImage+Scale.m in Sources */ = {isa = PBXBuildFile; fileRef = B6CDCAA4167D6F5700A8D642 /* EQImage+Scale.m */; };
+		4A8D593C1E56254C005B85FA /* EQImage+ColorArt.m in Sources */ = {isa = PBXBuildFile; fileRef = B6934670167F215400B7590D /* EQImage+ColorArt.m */; };
+		4A8D593F1E5627E4005B85FA /* EQImage+Helper.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A8D593D1E5627E4005B85FA /* EQImage+Helper.h */; };
+		4A8D59401E5627E4005B85FA /* EQImage+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8D593E1E5627E4005B85FA /* EQImage+Helper.m */; };
+		4A8D59411E5627E4005B85FA /* EQImage+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8D593E1E5627E4005B85FA /* EQImage+Helper.m */; };
 		B620268416787076004F3873 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B620268316787076004F3873 /* UIKit.framework */; };
 		B620268616787076004F3873 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B620268516787076004F3873 /* Foundation.framework */; };
 		B620268816787076004F3873 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B620268716787076004F3873 /* CoreGraphics.framework */; };
@@ -25,11 +33,17 @@
 		B62026F416788B34004F3873 /* PCFadedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = B62026E516788B34004F3873 /* PCFadedImageView.m */; };
 		B63779DC16799D4200E79BFE /* SLColorArt.m in Sources */ = {isa = PBXBuildFile; fileRef = B63779DA16799D4200E79BFE /* SLColorArt.m */; };
 		B63779DF16799D7E00E79BFE /* LBGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = B63779DE16799D7E00E79BFE /* LBGradient.m */; };
-		B6934671167F215400B7590D /* UIImage+ColorArt.m in Sources */ = {isa = PBXBuildFile; fileRef = B6934670167F215400B7590D /* UIImage+ColorArt.m */; };
-		B6CDCAA5167D6F5700A8D642 /* UIImage+Scale.m in Sources */ = {isa = PBXBuildFile; fileRef = B6CDCAA4167D6F5700A8D642 /* UIImage+Scale.m */; };
+		B6934671167F215400B7590D /* EQImage+ColorArt.m in Sources */ = {isa = PBXBuildFile; fileRef = B6934670167F215400B7590D /* EQImage+ColorArt.m */; };
+		B6CDCAA5167D6F5700A8D642 /* EQImage+Scale.m in Sources */ = {isa = PBXBuildFile; fileRef = B6CDCAA4167D6F5700A8D642 /* EQImage+Scale.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4A8D592C1E562374005B85FA /* SLTypeAliases.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLTypeAliases.h; sourceTree = "<group>"; };
+		4A8D59311E56253B005B85FA /* libmacOS.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libmacOS.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A8D59331E56253B005B85FA /* macOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = macOS.h; sourceTree = "<group>"; };
+		4A8D59351E56253B005B85FA /* macOS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = macOS.m; sourceTree = "<group>"; };
+		4A8D593D1E5627E4005B85FA /* EQImage+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EQImage+Helper.h"; sourceTree = "<group>"; };
+		4A8D593E1E5627E4005B85FA /* EQImage+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EQImage+Helper.m"; sourceTree = "<group>"; };
 		B620267F16787076004F3873 /* ColorArt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ColorArt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B620268316787076004F3873 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B620268516787076004F3873 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -56,13 +70,20 @@
 		B63779DA16799D4200E79BFE /* SLColorArt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLColorArt.m; sourceTree = "<group>"; };
 		B63779DD16799D7E00E79BFE /* LBGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBGradient.h; sourceTree = "<group>"; };
 		B63779DE16799D7E00E79BFE /* LBGradient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBGradient.m; sourceTree = "<group>"; };
-		B693466F167F215400B7590D /* UIImage+ColorArt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ColorArt.h"; sourceTree = "<group>"; };
-		B6934670167F215400B7590D /* UIImage+ColorArt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ColorArt.m"; sourceTree = "<group>"; };
-		B6CDCAA3167D6F5700A8D642 /* UIImage+Scale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Scale.h"; sourceTree = "<group>"; };
-		B6CDCAA4167D6F5700A8D642 /* UIImage+Scale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Scale.m"; sourceTree = "<group>"; };
+		B693466F167F215400B7590D /* EQImage+ColorArt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EQImage+ColorArt.h"; sourceTree = "<group>"; };
+		B6934670167F215400B7590D /* EQImage+ColorArt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EQImage+ColorArt.m"; sourceTree = "<group>"; };
+		B6CDCAA3167D6F5700A8D642 /* EQImage+Scale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EQImage+Scale.h"; sourceTree = "<group>"; };
+		B6CDCAA4167D6F5700A8D642 /* EQImage+Scale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EQImage+Scale.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		4A8D592E1E56253B005B85FA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B620267C16787076004F3873 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -77,11 +98,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4A8D59321E56253B005B85FA /* macOS */ = {
+			isa = PBXGroup;
+			children = (
+				4A8D59331E56253B005B85FA /* macOS.h */,
+				4A8D59351E56253B005B85FA /* macOS.m */,
+			);
+			path = macOS;
+			sourceTree = "<group>";
+		};
 		B620267416787076004F3873 = {
 			isa = PBXGroup;
 			children = (
 				B63779D316799A1400E79BFE /* ColorArt.podspec */,
 				B62026D216788B34004F3873 /* ColorArt */,
+				4A8D59321E56253B005B85FA /* macOS */,
 				B620268216787076004F3873 /* Frameworks */,
 				B620268016787076004F3873 /* Products */,
 			);
@@ -91,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				B620267F16787076004F3873 /* ColorArt.app */,
+				4A8D59311E56253B005B85FA /* libmacOS.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -143,19 +175,51 @@
 		B63779D616799D4200E79BFE /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				4A8D592C1E562374005B85FA /* SLTypeAliases.h */,
 				B63779D916799D4200E79BFE /* SLColorArt.h */,
 				B63779DA16799D4200E79BFE /* SLColorArt.m */,
-				B6CDCAA3167D6F5700A8D642 /* UIImage+Scale.h */,
-				B6CDCAA4167D6F5700A8D642 /* UIImage+Scale.m */,
-				B693466F167F215400B7590D /* UIImage+ColorArt.h */,
-				B6934670167F215400B7590D /* UIImage+ColorArt.m */,
+				4A8D593D1E5627E4005B85FA /* EQImage+Helper.h */,
+				4A8D593E1E5627E4005B85FA /* EQImage+Helper.m */,
+				B6CDCAA3167D6F5700A8D642 /* EQImage+Scale.h */,
+				B6CDCAA4167D6F5700A8D642 /* EQImage+Scale.m */,
+				B693466F167F215400B7590D /* EQImage+ColorArt.h */,
+				B6934670167F215400B7590D /* EQImage+ColorArt.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		4A8D592F1E56253B005B85FA /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4A8D593F1E5627E4005B85FA /* EQImage+Helper.h in Headers */,
+				4A8D59341E56253B005B85FA /* macOS.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
+		4A8D59301E56253B005B85FA /* macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4A8D59371E56253B005B85FA /* Build configuration list for PBXNativeTarget "macOS" */;
+			buildPhases = (
+				4A8D592D1E56253B005B85FA /* Sources */,
+				4A8D592E1E56253B005B85FA /* Frameworks */,
+				4A8D592F1E56253B005B85FA /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = macOS;
+			productName = macOS;
+			productReference = 4A8D59311E56253B005B85FA /* libmacOS.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
 		B620267E16787076004F3873 /* ColorArt */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B620269D16787076004F3873 /* Build configuration list for PBXNativeTarget "ColorArt" */;
@@ -182,6 +246,12 @@
 				CLASSPREFIX = CA;
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Fred Leitz";
+				TargetAttributes = {
+					4A8D59301E56253B005B85FA = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+					};
+				};
 			};
 			buildConfigurationList = B620267916787076004F3873 /* Build configuration list for PBXProject "ColorArt" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -196,6 +266,7 @@
 			projectRoot = "";
 			targets = (
 				B620267E16787076004F3873 /* ColorArt */,
+				4A8D59301E56253B005B85FA /* macOS */,
 			);
 		};
 /* End PBXProject section */
@@ -219,6 +290,18 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		4A8D592D1E56253B005B85FA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4A8D593B1E56254A005B85FA /* EQImage+Scale.m in Sources */,
+				4A8D593A1E562547005B85FA /* SLColorArt.m in Sources */,
+				4A8D59411E5627E4005B85FA /* EQImage+Helper.m in Sources */,
+				4A8D59361E56253B005B85FA /* macOS.m in Sources */,
+				4A8D593C1E56254C005B85FA /* EQImage+ColorArt.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B620267B16787076004F3873 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -229,8 +312,9 @@
 				B62026F416788B34004F3873 /* PCFadedImageView.m in Sources */,
 				B63779DC16799D4200E79BFE /* SLColorArt.m in Sources */,
 				B63779DF16799D7E00E79BFE /* LBGradient.m in Sources */,
-				B6CDCAA5167D6F5700A8D642 /* UIImage+Scale.m in Sources */,
-				B6934671167F215400B7590D /* UIImage+ColorArt.m in Sources */,
+				B6CDCAA5167D6F5700A8D642 /* EQImage+Scale.m in Sources */,
+				B6934671167F215400B7590D /* EQImage+ColorArt.m in Sources */,
+				4A8D59401E5627E4005B85FA /* EQImage+Helper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,6 +332,77 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		4A8D59381E56253B005B85FA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "-";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				EXECUTABLE_PREFIX = lib;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		4A8D59391E56253B005B85FA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EXECUTABLE_PREFIX = lib;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
 		B620269B16787076004F3873 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -329,6 +484,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		4A8D59371E56253B005B85FA /* Build configuration list for PBXNativeTarget "macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4A8D59381E56253B005B85FA /* Debug */,
+				4A8D59391E56253B005B85FA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		B620267916787076004F3873 /* Build configuration list for PBXProject "ColorArt" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

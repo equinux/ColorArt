@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Fred Leitz. All rights reserved.
 //
 
-#import "UIImage+ColorArt.h"
-#import "UIImage+Scale.h"
-@implementation UIImage (ColorArt)
+#import "EQImage+ColorArt.h"
+#import "EQImage+Scale.h"
+@implementation EQImage (ColorArt)
 
 - (SLColorArt *)colorArt:(CGSize)scale{
     return [[SLColorArt alloc] initWithImage:[self scaledToSize: scale]];

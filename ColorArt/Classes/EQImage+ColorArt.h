@@ -6,10 +6,9 @@
 //  Copyright (c) 2012 Fred Leitz. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import "SLColorArt.h"
 
-@interface UIImage (ColorArt)
+@interface EQImage (ColorArt)
 
 - (SLColorArt*) colorArt;
 - (SLColorArt*) colorArt:(CGSize)scale;

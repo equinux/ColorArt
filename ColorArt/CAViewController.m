@@ -8,8 +8,8 @@
 
 #import "CAViewController.h"
 #import "SLColorArt.h"  
-#import "UIImage+Scale.h"
-#import "UIImage+ColorArt.h"
+#import "EQImage+Scale.h"
+#import "EQImage+ColorArt.h"
 @interface CAViewController ()
 
 @end

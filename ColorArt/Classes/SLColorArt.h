@@ -14,20 +14,19 @@
 //
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL PANIC INC BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-
+#import "SLTypeAliases.h"
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
 @interface SLColorArt : NSObject
-@property(strong, nonatomic, readonly) UIColor *backgroundColor;
-@property(strong, nonatomic, readonly) UIColor *primaryColor;
-@property(strong, nonatomic, readonly) UIColor *secondaryColor;
-@property(strong, nonatomic, readonly) UIColor *detailColor;
+@property(strong, nonatomic, readonly) EQColor *backgroundColor;
+@property(strong, nonatomic, readonly) EQColor *primaryColor;
+@property(strong, nonatomic, readonly) EQColor *secondaryColor;
+@property(strong, nonatomic, readonly) EQColor *detailColor;
 @property(nonatomic, readonly) NSInteger randomColorThreshold; // Default to 2
 
-- (id)initWithImage:(UIImage*)image;
-- (id)initWithImage:(UIImage*)image threshold:(NSInteger)threshold;
+- (id)initWithImage:(EQImage*)image;
+- (id)initWithImage:(EQImage*)image threshold:(NSInteger)threshold;
 
-+ (void)processImage:(UIImage *)image
++ (void)processImage:(EQImage *)image
         scaledToSize:(CGSize)scaleSize
            threshold:(NSInteger)threshold
           onComplete:(void (^)(SLColorArt *colorArt))completeBlock;

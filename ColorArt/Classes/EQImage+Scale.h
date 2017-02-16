@@ -6,8 +6,8 @@
 //  Copyright (c) 2012 Fred Leitz. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "SLTypeAliases.h"
 
-@interface UIImage (Scale)
-- (UIImage*) scaledToSize:(CGSize)newSize;
+@interface EQImage (Scale)
+- (EQImage*) scaledToSize:(CGSize)newSize;
 @end

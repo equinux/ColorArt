@@ -16,20 +16,21 @@
 
 
 #import "SLColorArt.h"
-#import "UIImage+Scale.h"
+#import "EQImage+Scale.h"
+#import "EQImage+Helper.h"
 #define kAnalyzedBackgroundColor @"kAnalyzedBackgroundColor"
 #define kAnalyzedPrimaryColor @"kAnalyzedPrimaryColor"
 #define kAnalyzedSecondaryColor @"kAnalyzedSecondaryColor"
 #define kAnalyzedDetailColor @"kAnalyzedDetailColor"
 
 
-@interface UIColor (DarkAddition)
+@interface EQColor (DarkAddition)
 
 - (BOOL)pc_isDarkColor;
-- (BOOL)pc_isDistinct:(UIColor*)compareColor;
-- (UIColor*)pc_colorWithMinimumSaturation:(CGFloat)saturation;
+- (BOOL)pc_isDistinct:(EQColor*)compareColor;
+- (EQColor*)pc_colorWithMinimumSaturation:(CGFloat)saturation;
 - (BOOL)pc_isBlackOrWhite;
-- (BOOL)pc_isContrastingColor:(UIColor*)color;
+- (BOOL)pc_isContrastingColor:(EQColor*)color;
 
 @end
 
@@ -37,24 +38,24 @@
 @interface PCCountedColor : NSObject
 
 @property (assign) NSUInteger count;
-@property (strong) UIColor *color;
+@property (strong) EQColor *color;
 
-- (id)initWithColor:(UIColor*)color count:(NSUInteger)count;
+- (id)initWithColor:(EQColor*)color count:(NSUInteger)count;
 
 @end
 
 @interface SLColorArt ()
-@property(nonatomic, copy) UIImage *image;
-@property(nonatomic,readwrite,strong) UIColor *backgroundColor;
-@property(nonatomic,readwrite,strong) UIColor *primaryColor;
-@property(nonatomic,readwrite,strong) UIColor *secondaryColor;
-@property(nonatomic,readwrite,strong) UIColor *detailColor;
+@property(nonatomic, copy) EQImage *image;
+@property(nonatomic,readwrite,strong) EQColor *backgroundColor;
+@property(nonatomic,readwrite,strong) EQColor *primaryColor;
+@property(nonatomic,readwrite,strong) EQColor *secondaryColor;
+@property(nonatomic,readwrite,strong) EQColor *detailColor;
 @property(nonatomic,readwrite) NSInteger randomColorThreshold;
 @end
 
 @implementation SLColorArt
 
-- (id)initWithImage:(UIImage*)image
+- (id)initWithImage:(EQImage*)image
 {
     self = [self initWithImage:image threshold:2];
     if (self) {
@@ -63,7 +64,7 @@
     return self;
 }
 
-- (id)initWithImage:(UIImage*)image threshold:(NSInteger)threshold;
+- (id)initWithImage:(EQImage*)image threshold:(NSInteger)threshold;
 {
     self = [super init];
 
@@ -78,13 +79,13 @@
 }
 
 
-+ (void)processImage:(UIImage *)image
++ (void)processImage:(EQImage *)image
         scaledToSize:(CGSize)scaleSize
            threshold:(NSInteger)threshold
           onComplete:(void (^)(SLColorArt *colorArt))completeBlock;
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        UIImage *scaledImage = [image scaledToSize:scaleSize];
+        EQImage *scaledImage = [image scaledToSize:scaleSize];
         SLColorArt *colorArt = [[SLColorArt alloc] initWithImage:scaledImage
                                                        threshold:threshold];
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -96,7 +97,7 @@
 
 - (void)_processImage
 {
-    //UIImage *finalImage = [self _scaleImage:self.image size:self.scaledSize];
+    //EQImage *finalImage = [self _scaleImage:self.image size:self.scaledSize];
 
     NSDictionary *colors = [self _analyzeImage:self.image];
 
@@ -108,27 +109,27 @@
     //self.scaledImage = finalImage;
 }
 
-- (UIImage*)_scaleImage:(UIImage*)image size:(CGSize)scaledSize
+- (EQImage*)_scaleImage:(EQImage*)image size:(CGSize)scaledSize
 {
     return [image scaledToSize:scaledSize];
 }
 
-- (NSDictionary*)_analyzeImage:(UIImage*)anImage
+- (NSDictionary*)_analyzeImage:(EQImage*)anImage
 {
     NSArray *imageColors = nil;
-	UIColor *backgroundColor = [self _findEdgeColor:anImage imageColors:&imageColors];
-	UIColor *primaryColor = nil;
-	UIColor *secondaryColor = nil;
-	UIColor *detailColor = nil;
+	EQColor *backgroundColor = [self _findEdgeColor:anImage imageColors:&imageColors];
+	EQColor *primaryColor = nil;
+	EQColor *secondaryColor = nil;
+	EQColor *detailColor = nil;
     
     // If the random color threshold is too high and the image size too small,
     // we could miss detecting the background color and crash.
     if ( backgroundColor == nil )
     {
-        backgroundColor = [UIColor whiteColor];
+        backgroundColor = [EQColor whiteColor];
     }
     
-	BOOL darkBackground = [backgroundColor pc_isDarkColor];
+//	BOOL darkBackground = [backgroundColor pc_isDarkColor];
 
 	[self _findTextColors:imageColors primaryColor:&primaryColor secondaryColor:&secondaryColor detailColor:&detailColor backgroundColor:backgroundColor];
 
@@ -159,9 +160,9 @@ typedef struct RGBAPixel
     
 } RGBAPixel;
 
-- (UIColor*)_findEdgeColor:(UIImage*)image imageColors:(NSArray**)colors
+- (EQColor*)_findEdgeColor:(EQImage*)image imageColors:(NSArray**)colors
 {
-	CGImageRef imageRep = image.CGImage;
+	CGImageRef imageRep = [image eq_cgImage];
     
     NSUInteger pixelRange = 8;
     NSUInteger scale = 256 / pixelRange;
@@ -185,7 +186,7 @@ typedef struct RGBAPixel
 
     CGColorSpaceRef cs = CGColorSpaceCreateDeviceRGB();
     CGContextRef bmContext = CGBitmapContextCreate(NULL, width, height, 8, 4 * width, cs, kCGImageAlphaNoneSkipLast);
-    CGContextDrawImage(bmContext, (CGRect){.origin.x = 0.0f, .origin.y = 0.0f, .size.width = width, .size.height = height}, image.CGImage);
+    CGContextDrawImage(bmContext, (CGRect){.origin.x = 0.0f, .origin.y = 0.0f, .size.width = width, .size.height = height}, [image eq_cgImage]);
     CGColorSpaceRelease(cs);
     const RGBAPixel* pixels = (const RGBAPixel*)CGBitmapContextGetData(bmContext);
     for (NSUInteger y = 0; y < height; y++)
@@ -213,14 +214,14 @@ typedef struct RGBAPixel
             for(NSUInteger r = 0; r < pixelRange; r++) {
                 NSUInteger count = rawImageColors[r][g][b];
                 if(count > _randomColorThreshold) {
-                    UIColor* color = [UIColor colorWithRed:r / (CGFloat)pixelRange green:g / (CGFloat)pixelRange blue:b / (CGFloat)pixelRange alpha:1];
+                    EQColor* color = [EQColor colorWithRed:r / (CGFloat)pixelRange green:g / (CGFloat)pixelRange blue:b / (CGFloat)pixelRange alpha:1];
                     PCCountedColor* countedColor = [[PCCountedColor alloc] initWithColor:color count:count];
                     [imageColors addObject:countedColor];
                 }
                 
                 count = rawEdgeColors[r][g][b];
                 if(count > _randomColorThreshold) {
-                    UIColor* color = [UIColor colorWithRed:r / (CGFloat)pixelRange green:g / (CGFloat)pixelRange blue:b / (CGFloat)pixelRange alpha:1];
+                    EQColor* color = [EQColor colorWithRed:r / (CGFloat)pixelRange green:g / (CGFloat)pixelRange blue:b / (CGFloat)pixelRange alpha:1];
                     PCCountedColor* countedColor = [[PCCountedColor alloc] initWithColor:color count:count];
                     [edgeColors addObject:countedColor];
                 }
@@ -266,14 +267,14 @@ typedef struct RGBAPixel
 }
 
 
-- (void)_findTextColors:(NSArray*)colors primaryColor:(UIColor**)primaryColor secondaryColor:(UIColor**)secondaryColor detailColor:(UIColor**)detailColor backgroundColor:(UIColor*)backgroundColor
+- (void)_findTextColors:(NSArray*)colors primaryColor:(EQColor**)primaryColor secondaryColor:(EQColor**)secondaryColor detailColor:(EQColor**)detailColor backgroundColor:(EQColor*)backgroundColor
 {
-	UIColor *curColor = nil;
+	EQColor *curColor = nil;
 	NSMutableArray *sortedColors = [NSMutableArray arrayWithCapacity:[colors count]];
 	BOOL findDarkTextColor = ![backgroundColor pc_isDarkColor];
 
     for(PCCountedColor* countedColor in colors) {
-        UIColor* curColor = [countedColor.color pc_colorWithMinimumSaturation:.15];
+        EQColor* curColor = [countedColor.color pc_colorWithMinimumSaturation:.15];
 
 		if ( [curColor pc_isDarkColor] == findDarkTextColor )
 		{
@@ -319,11 +320,11 @@ typedef struct RGBAPixel
 
 @end
 
-@implementation UIColor (DarkAddition)
+@implementation EQColor (DarkAddition)
 
 - (BOOL)pc_isDarkColor
 {
-	UIColor *convertedColor = self;//[self colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
+	EQColor *convertedColor = self;//[self colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
     
 	CGFloat r, g, b, a;
 
@@ -340,10 +341,10 @@ typedef struct RGBAPixel
 }
 
 
-- (BOOL)pc_isDistinct:(UIColor*)compareColor
+- (BOOL)pc_isDistinct:(EQColor*)compareColor
 {
-	UIColor *convertedColor = self;//[self colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
-	UIColor *convertedCompareColor = compareColor;//[compareColor colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
+	EQColor *convertedColor = self;//[self colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
+	EQColor *convertedCompareColor = compareColor;//[compareColor colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
 	CGFloat r, g, b, a;
 	CGFloat r1, g1, b1, a1;
 
@@ -372,9 +373,9 @@ typedef struct RGBAPixel
 }
 
 
-- (UIColor*)pc_colorWithMinimumSaturation:(CGFloat)minSaturation
+- (EQColor*)pc_colorWithMinimumSaturation:(CGFloat)minSaturation
 {
-	UIColor *tempColor = self;//[self colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
+	EQColor *tempColor = self;//[self colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
 
 	if ( tempColor != nil )
 	{
@@ -387,7 +388,7 @@ typedef struct RGBAPixel
 
 		if ( saturation < minSaturation )
 		{
-			return [UIColor colorWithHue:hue saturation:minSaturation brightness:brightness alpha:alpha];
+			return [EQColor colorWithHue:hue saturation:minSaturation brightness:brightness alpha:alpha];
 		}
 	}
 
@@ -397,7 +398,7 @@ typedef struct RGBAPixel
 
 - (BOOL)pc_isBlackOrWhite
 {
-	UIColor *tempColor = self;//[self colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
+	EQColor *tempColor = self;//[self colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
 
 	if ( tempColor != nil )
 	{
@@ -416,10 +417,10 @@ typedef struct RGBAPixel
 }
 
 
-- (BOOL)pc_isContrastingColor:(UIColor*)color
+- (BOOL)pc_isContrastingColor:(EQColor*)color
 {
-	UIColor *backgroundColor = self;//[self colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
-	UIColor *foregroundColor = color;//[color colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
+	EQColor *backgroundColor = self;//[self colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
+	EQColor *foregroundColor = color;//[color colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
 
 	if ( backgroundColor != nil && foregroundColor != nil )
 	{
@@ -452,7 +453,7 @@ typedef struct RGBAPixel
 
 @implementation PCCountedColor
 
-- (id)initWithColor:(UIColor*)color count:(NSUInteger)count
+- (id)initWithColor:(EQColor*)color count:(NSUInteger)count
 {
 	self = [super init];
 
