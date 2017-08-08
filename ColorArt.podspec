@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "ColorArt"
-  s.version      = "0.1.2"
+  s.version      = "0.1.3"
   s.summary      = "iTunes 11-style color matching code."
   s.homepage     = "https://github.com/fleitz/ColorArt"
   s.license      = 'CUSTOM'

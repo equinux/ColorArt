@@ -126,7 +126,13 @@
     // we could miss detecting the background color and crash.
     if ( backgroundColor == nil )
     {
+#if TARGET_OS_IPHONE
         backgroundColor = [EQColor whiteColor];
+#else
+        // Make sure this is in the correct color space or other methods using the
+        // `[NSColor getRed:green:lue:alpha:]` API will crash.
+        backgroundColor = [[EQColor whiteColor] colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
+#endif
     }
     
 //	BOOL darkBackground = [backgroundColor pc_isDarkColor];
